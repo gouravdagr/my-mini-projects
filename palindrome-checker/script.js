@@ -1,6 +1,7 @@
 const textInput = document.getElementById("text-input");
 const checkBtn = document.getElementById("check-btn");
 const result = document.getElementById("result");
+const toggleSwitch = document.getElementById('checkbox');
 
 checkBtn.addEventListener("click", () => {
   const inputValue = textInput.value;
@@ -30,4 +31,12 @@ textInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     checkBtn.click();
   }
+});
+
+toggleSwitch.addEventListener('change', function(e) {
+    if (e.target.checked) {
+        document.body.classList.add('light-mode');
+    } else {
+        document.body.classList.remove('light-mode');
+    }
 });

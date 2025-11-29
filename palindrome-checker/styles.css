@@ -1,3 +1,25 @@
+:root {
+    --main-bg: #0a0a23;
+    --text-color: #ffffff;
+    --card-bg: #1b1b32;
+    --def-bg: #2a2a40;
+    --accent-color: #5a01a7;
+    --highlight: #ff00cc;
+    --input-border: #5a01a7;
+    --term-color: #ffcc00;
+}
+
+.light-mode {
+    --main-bg: #f0f2f5;     
+    --text-color: #333333;   
+    --card-bg: #ffffff;     
+    --def-bg: #e1e4e8;       
+    --accent-color: #333399; 
+    --highlight: #d900ad;     
+    --input-border: #ccc;   
+    --term-color: #e00909;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,13 +28,14 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0a0a23;
-    color: #ffffff;
+    background-color: var(--main-bg);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; 
+    min-height: 100vh;
     padding: 20px;
+    transition: background-color 0.3s, color 0.3s; 
 }
 
 .container {
@@ -24,24 +47,42 @@ body {
     gap: 20px;
 }
 
+#theme-btn {
+    align-self: flex-end; 
+    background: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--text-color);
+    padding: 5px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+#theme-btn:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
 #title {
     font-size: 2.5rem;
     text-align: center;
     margin-bottom: 10px;
-    background: linear-gradient(90deg, #ff00cc, #333399);
-    -webkit-text-fill-color: transparent;
+    background: linear-gradient(90deg, var(--highlight), var(--accent-color));
     -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .input-card {
-    background-color: #1b1b32;
-    padding: 30px; 
+    background-color: var(--card-bg);
+    padding: 30px;
     border-radius: 15px;
     width: 100%;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     gap: 15px;
+    transition: background-color 0.3s;
 }
 
 label {
@@ -58,9 +99,9 @@ label {
 #text-input {
     flex-grow: 1;
     border: none;
-    border-bottom: 2px solid #5a01a7;
+    border-bottom: 2px solid var(--input-border);
     background-color: transparent;
-    color: white;
+    color: var(--text-color);
     font-size: 1.2rem;
     padding: 5px;
     text-align: center;
@@ -69,13 +110,13 @@ label {
 }
 
 #text-input:focus {
-    border-bottom-color: #ff00cc;
+    border-bottom-color: var(--highlight);
 }
 
 #check-btn {
     width: 90px;
     border: none;
-    background-color: #5a01a7;
+    background-color: var(--accent-color);
     color: white;
     border-radius: 20px;
     cursor: pointer;
@@ -85,7 +126,7 @@ label {
 }
 
 #check-btn:hover {
-    background-color: #ff00cc;
+    background-color: var(--highlight);
 }
 
 #check-btn:active {
@@ -98,60 +139,97 @@ label {
     margin-top: 10px;
     font-weight: bold;
     min-height: 2rem;
-    word-wrap: break-word; 
+    word-wrap: break-word;
 }
 
 .palindrome-definition {
-    background-color: #2a2a40;
+    background-color: var(--def-bg);
     padding: 20px;
     border-radius: 10px;
     font-size: 0.9rem;
     line-height: 1.5;
     text-align: center;
-    border-left: 5px solid #ff00cc;
+    border-left: 5px solid var(--highlight);
+    transition: background-color 0.3s;
 }
 
 .term {
     font-style: italic;
-    color: #ffcc00;
+    color: var(--term-color);
     font-weight: bold;
 }
 
+.theme-toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px; 
+    position: relative;
+    width: 60px;  
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: var(--accent-color);
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    background-color: #0a0a23;
+    bottom: 4px;
+    content: "🌙"; 
+    height: 26px;  
+    width: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 0 2px rgba(255,255,255,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+
+input:checked + .slider {
+    background-color: var(--highlight);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+    content: "☀️"; 
+    background-color: #fff;
+}
+
+
 @media (max-width: 500px) {
-    #title {
-        font-size: 1.8rem; 
-        margin-bottom: 5px;
-    }
-
-    .input-card {
-        padding: 20px 15px; 
-    }
-
-    label {
-        font-size: 1rem;
-    }
-
-    .input-group {
-        height: 45px;
-    }
-
-    #text-input {
-        font-size: 1rem; 
-    }
-
-    #check-btn {
-        width: 80px;
-    }
+    #title { font-size: 1.8rem; margin-bottom: 5px; }
+    .input-card { padding: 20px 15px; }
+    label { font-size: 1rem; }
+    .input-group { height: 45px; }
+    #text-input { font-size: 1rem; }
+    #check-btn { width: 80px; }
 }
 
 @media (max-width: 400px) {
-    .input-group {
-        flex-direction: column;
-        height: auto; 
-    }
-
-    #check-btn {
-        width: 100%;
-        padding: 10px;
-    }
+    .input-group { flex-direction: column; height: auto; }
+    #check-btn { width: 100%; padding: 10px; }
 }
+
