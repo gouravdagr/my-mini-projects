@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Markdown Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Markdown to HTML Converter</h1>
+        <p>Live preview with support for tables, code blocks, and nested lists.</p>
+    </header>
+
+    <details class="help-section">
+        <summary><strong>ℹ️ Markdown Syntax Cheat Sheet (Click to Open)</strong></summary>
+        <div class="help-content">
+            <table>
+                <tr><th>Effect</th><th>Syntax</th></tr>
+                <tr><td>Headers</td><td><code># H1</code> to <code>###### H6</code></td></tr>
+                <tr><td>Bold / Italic</td><td><code>**Bold**</code> or <code>*Italic*</code></td></tr>
+                <tr><td>Lists</td><td><code>- Item</code> or <code>1. Item</code></td></tr>
+                <tr><td>Links</td><td><code>[Text](URL)</code></td></tr>
+                <tr><td>Images</td><td><code>![Alt](Image URL)</code></td></tr>
+                <tr><td>Code Block</td><td><code>```</code> (on new lines)</td></tr>
+                <tr><td>Inline Code</td><td><code>`code`</code></td></tr>
+                <tr><td>Blockquote</td><td><code>&gt; Quote</code></td></tr>
+                <tr><td>Strikethrough</td><td><code>~~text~~</code></td></tr>
+            </table>
+        </div>
+    </details>
+
+    <main class="container">
+        <section class="panel input-panel">
+            <div class="panel-header">
+                <h2>Markdown Input</h2>
+            </div>
+            <textarea id="markdown-input" placeholder="Type your Markdown here...
+            
+# Sample Title
+Try typing a list:
+- Item 1
+- Item 2
+
+Or a code block: console.log('Hello World');" data-path-to-node="6"></textarea>
+        </section>
+
+        <section class="panel code-panel">
+            <div class="panel-header">
+                <h2>HTML Output</h2>
+            </div>
+            <div id="html-output"></div>
+        </section>
+
+        <section class="panel preview-panel">
+            <div class="panel-header">
+                <h2>Live Preview</h2>
+            </div>
+            <div id="preview"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
